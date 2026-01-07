@@ -29,8 +29,27 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="theme-input">テーマ（任意）</label>
-                    <input type="text" id="theme-input" placeholder="例: 好きな食べ物、怖いもの">
+                    <label>① itoのバージョンを選択</label>
+                    <div class="theme-version-buttons">
+                        <button type="button" class="btn btn-version" onclick="selectVersion('classic')">🎮 ito通常版</button>
+                        <button type="button" class="btn btn-version" onclick="selectVersion('rainbow')">🌈 itoレインボー</button>
+                        <button type="button" class="btn btn-version" onclick="selectVersion('ito-classic')">⭐ itoクラシック</button>
+                    </div>
+                </div>
+
+                <div class="input-group hidden" id="theme-method-section">
+                    <label>② テーマの選び方</label>
+                    <div class="selected-version-display" id="selected-version-display"></div>
+                    <div class="theme-method-buttons">
+                        <button type="button" class="btn btn-method" onclick="selectRandomTheme()">🎲 ランダム</button>
+                        <button type="button" class="btn btn-method" onclick="showThemeListModal()">📋 リストから選択</button>
+                        <button type="button" class="btn btn-method" onclick="showCustomTheme()">✏️ オリジナル</button>
+                    </div>
+                </div>
+
+                <div class="input-group hidden" id="selected-theme-display">
+                    <label>③ 選択されたテーマ</label>
+                    <div class="theme-preview" id="theme-preview"></div>
                 </div>
 
                 <button class="btn btn-primary" onclick="startGame()">ゲーム開始</button>
@@ -75,6 +94,34 @@
                 </div>
 
                 <button class="btn btn-secondary" onclick="showResult()">結果を見る</button>
+            </div>
+        </div>
+
+        <!-- テーマリスト選択モーダル -->
+        <div id="theme-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>テーマを選択</h2>
+                    <button class="modal-close" onclick="closeThemeModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="theme-search" class="theme-search" placeholder="テーマを検索..." oninput="filterThemes()">
+                    <div class="theme-list" id="theme-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- カスタムテーマ入力モーダル -->
+        <div id="custom-theme-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>独自のテーマを入力</h2>
+                    <button class="modal-close" onclick="closeCustomThemeModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="custom-theme-input" class="custom-theme-input" placeholder="例: 好きな食べ物、怖いもの">
+                    <button class="btn btn-primary" onclick="setCustomTheme()">決定</button>
+                </div>
             </div>
         </div>
 
